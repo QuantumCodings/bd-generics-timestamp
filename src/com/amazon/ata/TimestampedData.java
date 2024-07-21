@@ -27,6 +27,10 @@ public class TimestampedData<T> {
         this.data = data;
         this.timestamp = timestamp;
     }
+    
+    public T getData() {
+    return data;
+}
 
     /**
      * Creates a {@code TimestampedData} from a data value alone, setting the timestamp equal to the current time.
