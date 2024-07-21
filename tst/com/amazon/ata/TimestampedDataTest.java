@@ -27,9 +27,7 @@ public class TimestampedDataTest {
 
         // THEN
         // PARTICIPANTS: data is correct
-        fail("Replace with an assertion that data stored in timestampedData is what we expect");
-
-        // timestamp is correct
+        assertEquals(data, timestampedData.getData(), "Expected data to match");
         assertEquals(timestamp, timestampedData.getTimestamp(), "Expected timestamp to match");
     }
 
@@ -43,10 +41,7 @@ public class TimestampedDataTest {
         TimestampedData<Double> timestampedData = new TimestampedData<>(data, timestamp);
 
         // THEN
-        // PARTICIPANTS: data is null
-        fail("Replace with an assertion that data stored in timestampedData is null");
-
-        // timestamp is correct
+        assertNull(timestampedData.getData(), "Expected data to be null");
         assertEquals(timestamp, timestampedData.getTimestamp(), "Expected timestamp to match");
     }
 
@@ -74,10 +69,8 @@ public class TimestampedDataTest {
         TimestampedData<List<String>> timestampedData = new TimestampedData<>(data);
 
         // THEN
-        // PARTICIPANTS - data is correct
-        fail("Replace with an assertion that data stored in timestampedData is what we expect");
-
-        // timestamp is close to now (within 5 seconds)
+        assertNull(timestampedData.getData(), "Expected data to be null");
+        ZonedDateTime now = ZonedDateTime.now();
         Duration durationBetweenTimestampAndNow = Duration.between(timestampedData.getTimestamp(), ZonedDateTime.now());
         assertTrue(durationBetweenTimestampAndNow.toMillis() < 5_000);
     }
@@ -85,16 +78,15 @@ public class TimestampedDataTest {
     // PARTICIPANTS: Implement this test
     @Test
     void dataConstructor_withNullData_constructsInstance() {
-        // GIVEN - null data
+      // GIVEN - null data
 
-        // WHEN - construct Timestamped data
+    // WHEN - construct TimestampedData
+    TimestampedData<String> timestampedData = new TimestampedData<>(null);
 
-        // THEN
-        // data is null
-
-        // timestamp is close to now (within 5 seconds)
-
-        fail("Remove after implementing this test.");
-
-    }
+    // THEN
+    assertNull(timestampedData.getData(), "Expected data to be null");
+    ZonedDateTime now = ZonedDateTime.now();
+    Duration durationBetweenTimestampAndNow = Duration.between(timestampedData.getTimestamp(), now);
+    assertTrue(durationBetweenTimestampAndNow.toMillis() < 5000, "Expected timestamp to be close to current time");
+}
 }
